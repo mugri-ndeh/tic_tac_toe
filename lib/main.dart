@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Tic tac toe'),
     );
   }
 }
@@ -78,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            ElevatedButton(onPressed: () {}, child: Text('Play Again')),
             ElevatedButton(
                 onPressed: () {
                   provider.reset();
