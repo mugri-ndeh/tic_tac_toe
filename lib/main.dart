@@ -48,43 +48,45 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Center(
-            child: GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 5),
-              itemCount: 9,
-              itemBuilder: (BuildContext context, int index) {
-                return Consumer<TicTacGame>(
-                  builder: (_, provider, __) => GestureDetector(
-                    onTap: () {
-                      provider.updateTile(index);
-                      //print(provider.currentPlayer);
-                    },
-                    onTapCancel: () {},
-                    child: Container(
-                      color: Colors.blueAccent,
-                      child: Center(
-                          child: Text(
-                        provider.tiles[index],
-                        style: TextStyle(fontSize: 40, color: Colors.white),
-                      )),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 5),
+                itemCount: 9,
+                itemBuilder: (BuildContext context, int index) {
+                  return Consumer<TicTacGame>(
+                    builder: (_, provider, __) => GestureDetector(
+                      onTap: () {
+                        provider.updateTile(index, context);
+                        //print(provider.currentPlayer);
+                      },
+                      onTapCancel: () {},
+                      child: Container(
+                        color: Colors.blueAccent,
+                        child: Center(
+                            child: Text(
+                          provider.tiles[index],
+                          style: TextStyle(fontSize: 40, color: Colors.white),
+                        )),
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            ElevatedButton(
-                onPressed: () {
-                  provider.reset();
+                  );
                 },
-                child: Text('Reset')),
-          ])
-        ],
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              ElevatedButton(
+                  onPressed: () {
+                    provider.reset();
+                  },
+                  child: Text('Reset')),
+            ])
+          ],
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
