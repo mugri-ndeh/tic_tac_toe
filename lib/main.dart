@@ -62,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     builder: (_, provider, __) => GestureDetector(
                       onTap: () {
                         provider.updateTile(index, context);
-                        //print(provider.currentPlayer);
                       },
                       onTapCancel: () {},
                       child: Container(
